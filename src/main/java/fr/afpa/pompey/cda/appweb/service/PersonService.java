@@ -1,7 +1,7 @@
-package fr.afpa.pompey.cda.appweb.service;
+package fr.afpa.pompey.cda.AppWeb.service;
 
-import fr.afpa.pompey.cda.appweb.model.Person;
-import fr.afpa.pompey.cda.appweb.repository.PersonRepository;
+import fr.afpa.pompey.cda.AppWeb.model.Person;
+import fr.afpa.pompey.cda.AppWeb.repository.PersonRepository;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,8 +26,7 @@ public class PersonService {
 
     public Person savePerson(Person person) {
         Person saved;
-        person.setLastname(person.getLastname().toUpperCase());
-
+        person.setLastName(person.getLastName().toUpperCase());
 
         if (person.getId() == null) {
             saved = personRepository.createPerson(person);

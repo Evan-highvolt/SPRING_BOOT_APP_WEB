@@ -21,16 +21,16 @@
 
     <h2 class="h2">Ajout d'une nouvelle personne</h2>
     <div>
-        <form method="post" th:action="@{/saveperson}" th:object="${person}">
+        <form method="post" th:action="@{/savePerson}" th:object="${person}">
             <div class="form-group">
                 <label for="firstNameInput">Prenom</label>
-                <input type="text" th:field="*{person.firstname}" class="form-control" id="firstNameInput"
+                <input type="text" th:field="*{firstName}" class="form-control" id="firstNameInput"
                        aria-describedby="firstNameHelp" placeholder="Saisir le prénom">
                 <small id="firstNameHelp" class="form-text text-muted">Merci d'ecrire le prenom de la personne</small>
             </div>
             <div class="form-group">
                 <label for="lastNameInput">Nom</label>
-                <input type="text" th:field="*{person.lastname}" class="form-control" id="lastNameInput"
+                <input type="text" th:field="*{lastName}" class="form-control" id="lastNameInput"
                        aria-describedby="lastNameHelp" placeholder="Saisir le nom">
                 <small id="lastNameHelp" class="form-text text-muted">Merci d'ecrire le nom de la personne.</small>
             </div>

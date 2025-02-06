@@ -1,7 +1,7 @@
-package fr.afpa.pompey.cda.appweb.repository;
+package fr.afpa.pompey.cda.AppWeb.repository;
 
-import fr.afpa.pompey.cda.appweb.config.CustomProperties;
-import fr.afpa.pompey.cda.appweb.model.Person;
+import fr.afpa.pompey.cda.AppWeb.config.CustomProperties;
+import fr.afpa.pompey.cda.AppWeb.model.Person;
 import lombok.Data;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -44,7 +44,7 @@ public class PersonRepository {
 
     public Person getPerson(Integer id) {
         String baseURL = properties.getUrlAPI();
-        String getPersonsURL = baseURL + "/persons/" + id;
+        String getPersonsURL = baseURL + "/person/" + id;
 
         RestTemplate restTemplate = new RestTemplate();
         ResponseEntity<Person> response = restTemplate.exchange(
@@ -59,7 +59,7 @@ public class PersonRepository {
 
     public Person createPerson(Person person) {
         String basApiUrl = properties.getUrlAPI();
-        String createPersonURL = basApiUrl + "/persons";
+        String createPersonURL = basApiUrl + "/person";
 
         RestTemplate restTemplate = new RestTemplate();
         HttpEntity<Person> request = new HttpEntity<>(person);
@@ -76,7 +76,7 @@ public class PersonRepository {
 
     public Person updatePerson(Person person) {
         String basApiUrl = properties.getUrlAPI();
-        String updatePersonURL = basApiUrl + "/persons/" + person.getId();
+        String updatePersonURL = basApiUrl + "/person/" + person.getId();
 
         RestTemplate restTemplate = new RestTemplate();
         HttpEntity<Person> request = new HttpEntity<>(person);
@@ -93,7 +93,7 @@ public class PersonRepository {
 
     public void deletePerson(Integer id) {
         String basApiUrl = properties.getUrlAPI();
-        String deletePersonURL = basApiUrl + "/persons/" + id;
+        String deletePersonURL = basApiUrl + "/person/" + id;
 
         RestTemplate restTemplate = new RestTemplate();
         ResponseEntity<Void> response =restTemplate.exchange(

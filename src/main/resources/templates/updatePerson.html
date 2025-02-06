@@ -16,6 +16,35 @@
     </div>
   </div>
 </nav>
+
+<div class="container special">
+  <h2 class="h2">Modification d'une personne</h2>
+  <div>
+    <form method="post" th:action="@{/savePerson}" th:object="${person}">
+      <div class="form-group">
+        <input type="hidden" th:field="*{id}" class="form-control">
+      </div>
+
+      <div class="form-group">
+        <label for="firstNameInput">Prenom</label>
+        <input type="text" th:field="*{firstName}" class="form-control" id="firstNameInput"
+               aria-describedby="firstNameHelp" placeholder="Saisir le prenom">
+        <small id="firstNameHelp" class="form-text text-muted">Merci d'ecrire le prenom</small>
+      </div>
+
+      <div class="form-group">
+        <label for="lastNameInput">Nom</label>
+        <input type="text" th:field="*{lastName}" class="form-control" id="lastNameInput"
+               aria-describedby="lastNameHelp" placeholder="Saisir le nom">
+        <small id="lastNameHelp" class="form-text text-muted">Merci d'ecrire le nom</small>
+      </div>
+      <button type="submit" class="btn btn-primary">Modifier</button>
+
+    </form>
+  </div>
+
+</div>
+
 <body>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"

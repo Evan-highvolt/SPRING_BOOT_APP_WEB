@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>fr.afpa.pompey.cda</groupId>
-	<artifactId>AppWeb</artifactId>
+	<artifactId>appweb</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>AppWeb</name>
+	<name>appweb</name>
 	<description>AppWeb project for Spring Boot</description>
 	<url/>
 	<licenses>
@@ -43,7 +43,7 @@
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
 			<version>1.18.36</version>
-<!--			<optional>true</optional>-->
+			<optional>true</optional>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -63,6 +63,7 @@
 						<path>
 							<groupId>org.projectlombok</groupId>
 							<artifactId>lombok</artifactId>
+							<version>1.18.36</version>
 						</path>
 					</annotationProcessorPaths>
 				</configuration>
@@ -75,6 +76,7 @@
 						<exclude>
 							<groupId>org.projectlombok</groupId>
 							<artifactId>lombok</artifactId>
+							<version>1.18.36</version>
 						</exclude>
 					</excludes>
 				</configuration>

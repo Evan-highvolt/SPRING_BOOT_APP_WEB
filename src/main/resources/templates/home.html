@@ -32,10 +32,10 @@
                     <td colspan="3">Aucune personnes est trouve</td>
                 </tr>
                 <tr th:each="person: ${listPersons}">
-                    <td><span th:text="${person.firstname}"> Prenom </span></td>
-                    <td><span th:text="${person.lastname}"> Nom </span></td>
+                    <td><span th:text="${person.firstName}"> Prenom </span></td>
+                    <td><span th:text="${person.lastName}"> Nom </span></td>
                     <td>
-                        <a th:href="@{/updateperson/{id}(id=${person.id})}"> <button class="btn btn-info">Modifier</button></a>
+                        <a th:href="@{/updatePerson/{id}(id=${person.id})}"> <button class="btn btn-info">Modifier</button></a>
                         <a th:href="@{/deleteperson/{id}(id=${person.id})}"> <button class="btn btn-danger">Supprimer</button></a>
                     </td>
                 </tr>

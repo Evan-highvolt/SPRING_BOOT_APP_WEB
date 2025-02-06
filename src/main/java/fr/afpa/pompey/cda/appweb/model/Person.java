@@ -1,13 +1,13 @@
-package fr.afpa.pompey.cda.appweb.model;
+package fr.afpa.pompey.cda.AppWeb.model;
 
 import lombok.Data;
+import lombok.Getter;
 
+@Getter
 @Data
 public class Person {
     private String id;
-    private String firstname;
-    private String lastname;
-
-
+    private String firstName;
+    private String lastName;
 
 }
