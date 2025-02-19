@@ -37,7 +37,7 @@ jobs:
         run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=Evan-highvolt_SPRING_BOOT_APP_WEB
 
 
-        docker-build-image-api:
+        docker-build-image-app:
           runs-on: ubuntu-latest
           needs:
             build
