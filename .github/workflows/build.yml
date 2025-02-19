@@ -69,4 +69,4 @@ jobs:
           push: true
           tags: ${{ secrets.DOCKERHUB_USER }}/mon_api_img
 
-      - run: echo "This job is done
+    - run: echo "This job is done
