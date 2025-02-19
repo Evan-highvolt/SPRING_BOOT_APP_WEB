@@ -106,6 +106,6 @@ jobs:
             context: .
             file: Dockerfile
             push: true
-            tags: ${{ secrets.DOCKERHUB_USER }}/webApp-img
+            tags: ${{ secrets.DOCKERHUB_USER }}/webApp_img
 
         - run: echo "This job is done ▬☻"
