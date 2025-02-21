@@ -13,11 +13,11 @@ public class CustomProperties {
     private String urlAPI;
 
 
-//    public String getUrlAPI() {
-//        return urlAPI;
-//    }
-//
-//    public void setUrlAPI(String urlAPI) {
-//        this.urlAPI = urlAPI;
-//    }
+    public String getUrlAPI() {
+        return urlAPI;
+    }
+
+    public void setUrlAPI(String urlAPI) {
+        this.urlAPI = urlAPI;
+    }
 }
