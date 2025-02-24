@@ -3,19 +3,17 @@ pipeline {
 
     stages {
 
-        stage('CleanWS') {
+        stage('Clean WS') {
             steps {
-                script {
                     cleanWs()
-                }
             }
         }
 
         stage('Git Checkout') {
             steps {
-                git branch: 'main',
-                        credentialsId: 'root',
-                        url: 'https://github.com/Evan-highvolt/SPRING_BOOT_APP_WEB.get'
+                git (branch: 'main',
+                        credentialsId: '9595',
+                        url: 'https://github.com/Evan-highvolt/SPRING_BOOT_APP_WEB.git')
             }
         }
 
