@@ -43,7 +43,7 @@ pipeline {
             steps {
                 script {
                     docker.withRegistry('', 'docker') {
-                        docker.image('evanhighvolt/webapp_img').push
+                        docker.image('evanhighvolt/webapp_img').push()
                     }
                 }
             }
