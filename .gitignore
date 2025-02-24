@@ -33,4 +33,4 @@ build/
 .vscode/
 
 /infra/mysql/data/*
-/.github/*
+.github
