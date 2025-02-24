@@ -25,7 +25,6 @@ pipeline {
         stage('Build maven') {
             steps {
                 script {
-                    bat 'mvn -v'
                     bat 'mvn clean package'
                 }
             }
@@ -34,11 +33,21 @@ pipeline {
         stage('Build Docker image') {
             steps {
                 script {
-                    def image = docker.build('evanhighvolt/webapp_img')
-                    image.push()
+                    docker.build('evanhighvolt/webapp_img', '-f Dockerfile .')
                 }
 
             }
+        }
+
+        stage('Push to Docker Hub') {
+            steps {
+                script {
+                    docker.withRegistry('', 'docker') {
+                        docker.image('evanhighvolt/webapp_img').push
+                    }
+                }
+            }
+
         }
 
         stage('Docker Compose') {
