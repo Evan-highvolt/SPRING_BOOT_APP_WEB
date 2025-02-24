@@ -1,0 +1,71 @@
+name: multicontainers
+
+services:
+  db:
+    image: mysql:8.0.39
+    container_name: db
+    volumes:
+      - ./infra/mysql/data:/var/lib/mysql
+      - ./infra/mysql/dump/init.sql:/docker-entrypoint-initdb.d/init.sql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: springboot
+      #MYSQL_USER: root
+      #MYSQL_PASSWORD: root
+
+    # A reverifier le port
+    ports:
+      - "3398:3306"
+    networks:
+      - mynetwork
+
+  api:
+    depends_on:
+      - db
+    image: evanhighvolt/mon_api_img
+    container_name: api
+    restart: always
+    ports:
+      - "9000:9000"
+    environment:
+      SPRING_DATASOURCE_URL: "jdbc:mysql://db:3306/springboot"
+      SPRING_DATASOURCE_USERNAME: "root"
+      SPRING_DATASOURCE_PASSWORD: "root"
+      SPRING_JPA_HIBERNATE_DDL_AUTO: "update"
+      SPRING_JPA_PROPERTIES_HIBERNATE_DIALECT: "org.hibernate.dialect.MySQL8Dialect"
+      SPRING_JPA_SHOW_SQL: "true"
+      SPRING_JPA_PROPERTIES_HIBERNATE_FORMAT_SQL: "true"
+    networks:
+      - mynetwork
+
+  web_app:
+    depends_on:
+      - api
+    restart: always
+    image: evanhighvolt/webapp_img
+    ports:
+      - "9001:9001"
+    environment:
+      FR.AFPA.POMPEY.CDA.APPWEB.URLAPI: "http://api:9000"
+    networks:
+      - mynetwork
+
+  phpmyadmin:
+    image: phpmyadmin:latest
+    depends_on:
+      - db
+    ports:
+      - "8090:80"
+    restart: always
+    environment:
+      PMA_HOST: "db"
+      MYSQL_ROOT_PASSWORD: "root"
+    networks:
+      - mynetwork
+
+volumes:
+  data:
+
+networks:
+  mynetwork:
+    driver: bridge

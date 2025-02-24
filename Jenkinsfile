@@ -1,22 +1,21 @@
-#!groovy
-
 pipeline {
     agent any
-    stages {
-        stage('Git Checkout') {
-         steps {
-            script {
-                    git branch: 'main',
-                    credentialsId: '9595'
-                    url: 'https://github.com/Evan-highvolt/SPRING_BOOT_APP_WEB'
-                     }
-            }
 
+    stages {
+
+        stage('CleanWS') {
+            steps {
+                script {
+                    cleanWs()
+                }
+            }
         }
 
-        stage('Clean workspace') {
+        stage('Git Checkout') {
             steps {
-                cleanWs()
+                git branch: 'main',
+                        credentialsId: 'root',
+                        url: 'https://github.com/Evan-highvolt/SPRING_BOOT_APP_WEB.get'
             }
         }
 
@@ -29,24 +28,19 @@ pipeline {
         stage('Build Docker image') {
             steps {
                 script {
-                    docker.withRegistry('', '9595')
-                    docker.build('evan-highvolt/SPRING_BOOT_APP_WEB').push()
+                    def image = docker.build('evanhighvolt/webapp_img')
+                    image.push()
                 }
 
             }
         }
-        stage('push to Docker Hub') {
+
+        stage('Docker Compose') {
             steps {
                 script {
-                    docker.withRegistry('', '9595') {
-                        docker.image('evan-highvolt/SPRING_BOOT_APP_WEB').push()
-
-                    }
+                    bat 'docker-compose up -d'
                 }
             }
         }
-
     }
-
-
 }
