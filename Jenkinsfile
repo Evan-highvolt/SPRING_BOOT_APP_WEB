@@ -19,7 +19,10 @@ pipeline {
 
         stage('Build maven') {
             steps {
-                bat 'mvn clean package'
+                script {
+                    bat 'mvn -v'
+                    bat 'mvn clean package'
+                }
             }
         }
 
