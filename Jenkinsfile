@@ -1,6 +1,12 @@
 pipeline {
     agent any
 
+    environment {
+
+        registryCredential = 'docker'
+
+    }
+
     tools {
         maven 'Maven'
         jdk 'JDK21'
@@ -42,7 +48,7 @@ pipeline {
         stage('Push to Docker Hub') {
             steps {
                 script {
-                    docker.withRegistry('', 'docker') {
+                    docker.withRegistry('', registryCredential) {
                         docker.image('evanhighvolt/webapp_img').push()
                     }
                 }
@@ -54,6 +60,14 @@ pipeline {
             steps {
                 script {
                     bat 'docker-compose up -d'
+                }
+            }
+        }
+
+        stage('Deploy with Docker compose') {
+            steps{
+                script{
+                    bat 'docker-compose up -d --build --force-recreate --remove-orphans'
                 }
             }
         }
